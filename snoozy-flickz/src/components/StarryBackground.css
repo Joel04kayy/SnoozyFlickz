@@ -1,0 +1,23 @@
+.starry-bg-root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  background: #000;
+  overflow: hidden;
+}
+
+.starry-bg-star {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: star-glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes star-glow {
+  0% { filter: brightness(1.2) blur(0.5px); }
+  50% { filter: brightness(4.5) blur(3.5px); }
+  100% { filter: brightness(1.2) blur(0.5px); }
+} 
