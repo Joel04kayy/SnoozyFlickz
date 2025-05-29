@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import './Logo3D.css';
 
 const LAYERS = 12;
@@ -31,12 +31,49 @@ const renderLetterLayers = (letter, letterIdx) => (
 
 const text = 'Snoozy Flickz';
 
-const Logo3D = () => (
-  <div className="logo-3d-container">
-    <h1 className="logo-3d-text">
-      {Array.from(text).map((char, i) => renderLetterLayers(char, i))}
-    </h1>
-  </div>
-);
+const Logo3D = () => {
+  const [rotation, setRotation] = useState({ x: 0, y: 0 });
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const maxAngleY = 2;
+      const maxAngleXUp = 2;
+      const maxAngleXDown = 0.5;
+      const xPercent = e.clientX / window.innerWidth; // 0 (left) to 1 (right)
+      const yPercent = e.clientY / window.innerHeight; // 0 (top) to 1 (bottom)
+      // Y: left/right
+      let rotY = (xPercent - 0.5) * 2 * maxAngleY;
+      // X: up/down (top is negative, bottom is positive)
+      let rotX;
+      if (yPercent < 0.5) {
+        // Above center: up tilt (max 2)
+        rotX = (0.5 - yPercent) * 2 * maxAngleXUp;
+      } else {
+        // Below center: down tilt (max 0.5)
+        rotX = -(yPercent - 0.5) * 2 * maxAngleXDown;
+      }
+      setRotation({ x: rotX, y: rotY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  return (
+    <div
+      className="logo-3d-container"
+      ref={containerRef}
+    >
+      <h1
+        className="logo-3d-text"
+        style={{
+          transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`
+        }}
+      >
+        {Array.from(text).map((char, i) => renderLetterLayers(char, i))}
+      </h1>
+    </div>
+  );
+};
 
 export default Logo3D; 
