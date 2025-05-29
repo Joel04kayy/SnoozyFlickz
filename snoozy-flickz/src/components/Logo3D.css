@@ -1,0 +1,101 @@
+.logo-3d-container {
+  position: relative;
+  margin-top: -12vh;
+  z-index: 10;
+  perspective: 1200px;
+}
+
+.logo-3d-text {
+  font-size: 6rem;
+  font-weight: 800;
+  color: white;
+  text-transform: uppercase;
+  position: relative;
+  transform-style: preserve-3d;
+  letter-spacing: 0.05em;
+  display: flex;
+  justify-content: center;
+}
+
+.logo-3d-extrude {
+  display: inline-block;
+  position: relative;
+  margin: 0 0.05em;
+  width: 1em;
+  height: 1em;
+  perspective: 600px;
+  transform-style: preserve-3d;
+  animation: extrudeFloat 6s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.1s);
+}
+
+.front-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1em;
+  height: 1em;
+  color: #fff;
+  text-shadow: 0 2px 16px #fff8, 0 0 2px #fff8;
+  transform: translateZ(0.25em);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.side-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1em;
+  height: 1em;
+  color: #bbb;
+  background: linear-gradient(90deg, #bbb 60%, #888 100%);
+  transform: rotateY(90deg) translateZ(0.25em);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  opacity: 0.85;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: blur(0.5px);
+}
+
+.logo-3d-extrude::after {
+  content: '';
+  position: absolute;
+  left: 0.1em;
+  top: 1em;
+  width: 0.8em;
+  height: 0.18em;
+  background: rgba(0,0,0,0.18);
+  filter: blur(2px);
+  border-radius: 0.1em;
+  z-index: -1;
+  transform: skewX(-18deg) scaleY(0.7);
+}
+
+@keyframes extrudeFloat {
+  0%, 100% {
+    transform: translateY(0) rotateY(0deg);
+  }
+  25% {
+    transform: translateY(-0.15em) rotateY(-8deg);
+  }
+  50% {
+    transform: translateY(0) rotateY(0deg);
+  }
+  75% {
+    transform: translateY(0.15em) rotateY(8deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .logo-3d-text {
+    font-size: 3rem;
+  }
+} 
