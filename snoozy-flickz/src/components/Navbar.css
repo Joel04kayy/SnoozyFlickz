@@ -3,7 +3,8 @@
   top: 0;
   left: 0;
   right: 0;
-  padding: 1rem 2rem;
+  padding: 2rem 2rem;
+  margin-top: 1rem;
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(10px);
   z-index: 1000;
@@ -35,7 +36,8 @@
   width: 0;
   height: 2px;
   bottom: -4px;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: #00ff88;
   transition: width 0.3s ease;
 }
