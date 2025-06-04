@@ -1,0 +1,161 @@
+.photo-gallery {
+  padding: 4rem 2rem;
+  background: rgba(0, 0, 0, 0.7);
+  min-height: 100vh;
+}
+
+.gallery-title {
+  text-align: center;
+  color: #fff;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.photo-card {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  cursor: pointer;
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+}
+
+.photo-card:hover {
+  transform: translateY(-10px);
+}
+
+.photo-content {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.photo-content img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.photo-card:hover .photo-content img {
+  transform: scale(1.1);
+}
+
+.photo-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  padding: 2rem 1rem 1rem;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.photo-card:hover .photo-overlay {
+  transform: translateY(0);
+}
+
+.photo-overlay h3 {
+  color: #fff;
+  margin: 0;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.photo-overlay p {
+  color: #ccc;
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Modal styles */
+.photo-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  background: #000;
+  border-radius: 15px;
+  overflow: hidden;
+  animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-content img {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+}
+
+.modal-info {
+  padding: 1.5rem;
+  color: #fff;
+}
+
+.modal-info h3 {
+  margin: 0 0 1rem;
+  font-size: 1.8rem;
+}
+
+.modal-info p {
+  margin: 0;
+  color: #ccc;
+  font-size: 1.1rem;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+} 
